@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Exam 2 Book app</string>
+    <string name="create_account_in">Create account in</string>
+    <string name="bookie">Bookie</string>
+    <string name="create_login">Create Login</string>
+    <string name="create_password">Create Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="submit">Submit</string>
+    <string name="about_book">Best book storage platform for all business and individuals to whose like to read and share</string>
+</resources>
