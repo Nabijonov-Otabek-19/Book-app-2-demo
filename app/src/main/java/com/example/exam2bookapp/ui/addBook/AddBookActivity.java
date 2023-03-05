@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.exam2bookapp.R;
 import com.example.exam2bookapp.model.BookData;
@@ -17,6 +18,7 @@ public class AddBookActivity extends AppCompatActivity implements AddBookContrac
 
     private EditText bookTitle, bookAuthor, bookDesc;
     private AppCompatButton saveButton;
+    private ImageView imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,11 @@ public class AddBookActivity extends AppCompatActivity implements AddBookContrac
         bookAuthor = findViewById(R.id.edt_bookAuthor);
         bookDesc = findViewById(R.id.edt_bookDesc);
         saveButton = findViewById(R.id.btn_save);
+        imgBack = findViewById(R.id.img_backAdd);
+
+        imgBack.setOnClickListener(view -> {
+            presenter.clickSaveButton();
+        });
 
         saveButton.setOnClickListener(view -> {
             presenter.setBookToDB();
