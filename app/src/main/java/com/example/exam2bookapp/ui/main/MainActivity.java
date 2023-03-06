@@ -3,6 +3,8 @@ package com.example.exam2bookapp.ui.main;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.UserHandle;
@@ -65,12 +67,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter.setBooks();
 
-        addButton.setOnClickListener(view -> {
-            presenter.clickAddButton();
+        imgLogout.setOnClickListener(view -> {
+            new AlertDialog.Builder(this)
+                    .setCancelable(false)
+                    .setTitle("Exit").setMessage("Do you want to quit")
+                    .setPositiveButton("Yes", (dialogInterface, i) -> {
+                        presenter.closeWindow();
+                    })
+                    .setNegativeButton("No", ((dialogInterface, i) -> {
+
+                    })).create().show();
         });
 
-        imgLogout.setOnClickListener(view -> {
-            presenter.closeWindow();
+        addButton.setOnClickListener(view -> {
+            presenter.clickAddButton();
         });
     }
 
