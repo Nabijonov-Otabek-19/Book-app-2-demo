@@ -42,7 +42,7 @@ public class CreateAccountActivity extends AppCompatActivity implements CreateAc
             String confirm = confirmPassword.getText().toString().trim();
 
             if (presenter.clickSubmitButton(name, pass, confirm)) {
-                //presenter.saveAccountToDB(name, pass);
+                presenter.saveAccountToDB(name, pass);
                 presenter.openMainActivity();
 
             }else presenter.showInfo("Something went wrong");

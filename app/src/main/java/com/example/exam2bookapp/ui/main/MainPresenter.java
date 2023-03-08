@@ -26,6 +26,22 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
+    public String getCurrUser() {
+        return usersDataBase.getCurrUser();
+    }
+
+    @Override
+    public void logOut() {
+        usersDataBase.setCurrUser("");
+        view.openLoginActivity();
+    }
+
+    @Override
+    public String getAllUsers() {
+        return usersDataBase.getUsers();
+    }
+
+    @Override
     public String getBookTitle() {
         return usersDataBase.getBook();
     }

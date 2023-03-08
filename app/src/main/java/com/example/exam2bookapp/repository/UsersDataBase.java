@@ -3,12 +3,6 @@ package com.example.exam2bookapp.repository;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.exam2bookapp.model.BookData;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 public class UsersDataBase {
 
     private static UsersDataBase usersDataBase;
@@ -19,8 +13,11 @@ public class UsersDataBase {
     public static final String AUTHOR = "author";
     public static final String DESC = "desc";
 
-    public static final String NAME = "name";
-    public static final String PASSWORD = "password";
+    public static final String USERS = "name";
+    public static final String PASSWORDS = "password";
+    public static final String START_INDEX = "start_index";
+
+    public static final String CURR_USER = "curr_user";
 
 
     private SharedPreferences pref;
@@ -39,12 +36,50 @@ public class UsersDataBase {
         return usersDataBase;
     }
 
-    public void setName(String name) {
-        editor.putString(NAME, name).apply();
+    public void setCurrUser(String user) {
+        editor.putString(CURR_USER, user).apply();
     }
 
-    public void setPassword(String password) {
-        editor.putString(PASSWORD, password).apply();
+    public String getCurrUser() {
+        return pref.getString(CURR_USER, "");
+    }
+
+    public void setUsers(String user) {
+        StringBuilder str;
+        if (getBook().length() == 0) str = new StringBuilder();
+        else str = new StringBuilder(getUsers());
+
+        // Yangi User qo'shganda uni startIndex ni ham o'ziga qo'shib qo'yadi
+        str.append(user).append("#").append(getStartIndex()).append("#");
+        editor.putString(USERS, str.toString().trim()).apply();
+
+        // yangi user qo'shilsa, o'sha user oynasi ochiladi
+        setCurrUser(user);
+    }
+
+    public String getUsers() {
+        return pref.getString(USERS, "");
+    }
+
+    public void setPasswords(String password) {
+        StringBuilder str;
+        if (getBook().length() == 0) str = new StringBuilder();
+        else str = new StringBuilder(getPasswords());
+
+        str.append(password).append("#");
+        editor.putString(PASSWORDS, str.toString().trim()).apply();
+    }
+
+    public String getPasswords() {
+        return pref.getString(PASSWORDS, "");
+    }
+
+    public void setStartIndex(int index) {
+        editor.putInt(START_INDEX, index).apply();
+    }
+
+    public int getStartIndex() {
+        return pref.getInt(START_INDEX, 0);
     }
 
 
@@ -53,8 +88,12 @@ public class UsersDataBase {
         if (getBook().length() == 0) str = new StringBuilder();
         else str = new StringBuilder(getBook());
 
+        // kitob qo'shganda startIndex oshadi
+        setStartIndex(getStartIndex() + 1);
+
         str.append(bookTitle).append("#");
         editor.putString(BOOK, str.toString().trim()).apply();
+
     }
 
     public String getBook() {

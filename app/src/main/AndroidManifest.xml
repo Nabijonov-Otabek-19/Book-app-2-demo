@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Exam2BookApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.addBook.AddBookActivity"
             android:exported="false" />
         <activity
@@ -24,7 +27,7 @@
             android:name=".ui.account.CreateAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

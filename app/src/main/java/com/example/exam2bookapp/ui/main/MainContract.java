@@ -1,9 +1,5 @@
 package com.example.exam2bookapp.ui.main;
 
-import com.example.exam2bookapp.model.BookData;
-
-import java.util.List;
-
 public interface MainContract {
 
 
@@ -11,6 +7,7 @@ public interface MainContract {
         void closeScreen();
 
         void setBooks();
+        void openLoginActivity();
 
         void openAddBookActivity();
 
@@ -19,7 +16,10 @@ public interface MainContract {
 
     interface Presenter {
         void closeWindow();
+        String getCurrUser();
+        void logOut();
 
+        String getAllUsers();
         String getBookTitle();
         String getBookAuthor();
         String getBookDesc();

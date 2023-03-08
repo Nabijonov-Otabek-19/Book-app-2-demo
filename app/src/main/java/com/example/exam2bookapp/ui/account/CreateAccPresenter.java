@@ -20,10 +20,8 @@ public class CreateAccPresenter implements CreateAccContract.Presenter {
 
     @Override
     public void saveAccountToDB(String name, String password) {
-        String n = name;
-        String p = password;
-        usersDataBase.setName(n);
-        usersDataBase.setPassword(p);
+        usersDataBase.setUsers(name);
+        usersDataBase.setPasswords(password);
     }
 
     @Override
